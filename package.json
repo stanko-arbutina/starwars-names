@@ -1,6 +1,6 @@
 {
   "name": "@stanko-arbutina/starwars-names",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get random Star Wars names",
   "main": "source/index.js",
   "scripts": {
