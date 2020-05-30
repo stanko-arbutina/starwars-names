@@ -2,7 +2,7 @@
   "name": "@stanko-arbutina/starwars-names",
   "version": "1.0.0",
   "description": "Get random Star Wars names",
-  "main": "src/index.js",
+  "main": "source/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
