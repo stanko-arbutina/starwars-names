@@ -2,18 +2,26 @@
   "name": "@stanko-arbutina/starwars-names",
   "version": "0.0.0-development",
   "description": "Get random Star Wars names",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "istanbul cover -x *.test.js _mocha -- -R spec src/index.test.js",
+    "cover": "nyc npm run test",
+    "watch:test": "npm t -- -w",
+    "test": "mocha -R spec src/index.test.js --require babel-register",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "semantic-release": "semantic-release",
-    "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
-    "commit": "./node_modules/.bin/git-cz"
+    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "commit": "./node_modules/.bin/git-cz",
+    "prebuild": "./node_modules/.bin/rimraf build",
+    "build": "./node_modules/.bin/babel --copy-files --out-dir dist src --ignore *.test.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/stanko-arbutina/starwars-names.git"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "keywords": [
     "star",
     "wars",
@@ -30,6 +38,10 @@
     "unique-random-array": "2.0.0"
   },
   "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-stage-2": "6.24.1",
+    "babel-register": "6.26.0",
     "chai": "4.2.0",
     "codecov.io": "0.1.6",
     "commitizen": "4.1.2",
@@ -37,6 +49,8 @@
     "ghooks": "2.0.4",
     "istanbul": "0.4.5",
     "mocha": "7.2.0",
+    "nyc": "15.1.0",
+    "rimraf": "3.0.2",
     "semantic-release": "^17.0.8"
   },
   "config": {
@@ -44,7 +58,13 @@
       "path": "./node_modules/cz-conventional-changelog"
     },
     "ghooks": {
-      "pre-commit": "npm run test && npm run check-coverage"
+      "pre-commit": "npm run cover && npm run check-coverage"
     }
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-2"
+    ]
   }
 }
