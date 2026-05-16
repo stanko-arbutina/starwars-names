@@ -12,8 +12,17 @@ function random(number){
 }
 
 
+// function which returns a random name up to certain length of characters
+function randomName(maxLength) {
+    let name;
+    do {
+        name = getRandomItem();
+    } while (name.length > maxLength);
+    return name;
+}
 
 module.exports = {
     all: starWarsNames,
-    random: random
+    random: random,
+    randomName: randomName
 }
