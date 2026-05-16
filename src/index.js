@@ -16,7 +16,6 @@ function random(number){
 function randomName(maxLength) {
     let name;
     do {
-            console.log(3);
         name = getRandomItem();
     } while (name.length > maxLength || name.length === 0);
     return name;
